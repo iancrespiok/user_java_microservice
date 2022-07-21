@@ -3,7 +3,8 @@ package bci.evaluacion.user.model;
 import org.omg.CORBA.PUBLIC_MEMBER;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,12 +14,12 @@ public class User extends PersistentEntity {
   public String name;
   public String email;
   public String password;
-  public Date lastLogin;
-  public Date created;
+  public LocalDate lastLogin;
+  public LocalDate created;
   public String token;
   public Boolean isActive;
   @OneToMany
-  public List<Phone> phones;
+  public List<Phone> phones = new ArrayList<Phone>();
   public String getName() {
     return name;
   }
@@ -51,19 +52,19 @@ public class User extends PersistentEntity {
     this.phones = phones;
   }
 
-  public Date getLastLogin() {
+  public LocalDate getLastLogin() {
     return lastLogin;
   }
 
-  public void setLastLogin(Date lastLogin) {
+  public void setLastLogin(LocalDate lastLogin) {
     this.lastLogin = lastLogin;
   }
 
-  public Date getCreated() {
+  public LocalDate getCreated() {
     return created;
   }
 
-  public void setCreated(Date created) {
+  public void setCreated(LocalDate created) {
     this.created = created;
   }
 

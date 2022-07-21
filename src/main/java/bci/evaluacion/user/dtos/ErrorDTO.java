@@ -1,17 +1,23 @@
 package bci.evaluacion.user.dtos;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class ErrorDTO {
-  public Date timestamp;
+  public LocalDate timestamp;
   public Integer codigo;
   public String detail;
 
-  public Date getTimestamp() {
+  public ErrorDTO(LocalDate timestamp, Integer codigo, String detail) {
+    this.timestamp = timestamp;
+    this.codigo = codigo;
+    this.detail = detail;
+  }
+
+  public LocalDate getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(Date timestamp) {
+  public void setTimestamp(LocalDate timestamp) {
     this.timestamp = timestamp;
   }
 

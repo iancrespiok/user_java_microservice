@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class RegexValidator {
   private static final String EMAIL_PATTERN = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
   private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?!.*[0-9]{3,})(?=.*[A-Z])(?!.*[A-Z]{2,})[a-zA-Z0-9]{8,12}$";
-//(?=(?:.*?[A-Z]){1})(?=.*?[a-z])(?=(?:.*?[0-9]){2})
+
   public static boolean validateMail(String emailToValidate) {
     Pattern pattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
     Matcher matcher = pattern.matcher(emailToValidate);

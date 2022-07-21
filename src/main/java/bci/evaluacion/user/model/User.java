@@ -1,5 +1,6 @@
 package bci.evaluacion.user.model;
 
+import bci.evaluacion.user.dtos.UserDTO;
 import org.omg.CORBA.PUBLIC_MEMBER;
 
 import javax.persistence.*;
@@ -11,15 +12,16 @@ import java.util.List;
 @Table(name = "users")
 public class User extends PersistentEntity {
 
-  public String name;
-  public String email;
-  public String password;
-  public LocalDate lastLogin;
-  public LocalDate created;
-  public String token;
-  public Boolean isActive;
+  private String name;
+  private String email;
+  private String password;
+  private LocalDate lastLogin;
+  private LocalDate created;
+  private String token;
+  private Boolean isActive;
   @OneToMany
-  public List<Phone> phones = new ArrayList<Phone>();
+  private List<Phone> phones = new ArrayList<Phone>();
+
   public String getName() {
     return name;
   }

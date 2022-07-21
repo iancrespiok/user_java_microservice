@@ -6,9 +6,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "phones")
 public class Phone extends PersistentEntity {
-  public Long number;
-  public Integer cityCode;
-  public String countryCode;
+  private Long number;
+  private Integer cityCode;
+  private String countryCode;
 
   public Long getNumber() {
     return number;

@@ -4,12 +4,15 @@ import bci.evaluacion.user.model.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class JWTProvider {
   @Value("${jwt.secret}")
   private String secret;

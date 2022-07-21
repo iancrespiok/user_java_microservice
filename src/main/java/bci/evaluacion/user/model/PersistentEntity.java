@@ -7,7 +7,7 @@ public class PersistentEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(unique = true, nullable = false)
-  public Long id;
+  private Long id;
 
   public Long getId() {
     return id;

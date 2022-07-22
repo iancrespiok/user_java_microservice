@@ -1,6 +1,7 @@
 package bci.evaluacion.user.model;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @MappedSuperclass
 public class PersistentEntity {

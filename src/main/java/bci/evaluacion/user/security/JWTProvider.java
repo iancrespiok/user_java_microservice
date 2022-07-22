@@ -18,10 +18,6 @@ public class JWTProvider {
   @Value("${jwt.secret}")
   private String secret;
 
-  public JWTProvider(String secret) {
-    this.secret = secret;
-  }
-
   @PostConstruct
   protected void init() {
     secret = Base64.getEncoder().encodeToString(secret.getBytes());
@@ -41,5 +37,9 @@ public class JWTProvider {
     } catch (Exception e) {
       return "Bad Token";
     }
+  }
+
+  public void setSecret(String secret) {
+    this.secret = secret;
   }
 }

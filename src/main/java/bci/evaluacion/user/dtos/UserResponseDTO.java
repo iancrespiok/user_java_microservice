@@ -6,6 +6,7 @@ import bci.evaluacion.user.model.User;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class UserResponseDTO {
   private Long id;

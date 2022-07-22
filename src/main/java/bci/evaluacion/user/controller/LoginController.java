@@ -25,15 +25,17 @@ public class LoginController {
 
   @GetMapping
   public ResponseEntity<?> getAuthenticatedUser(HttpServletRequest httpServletRequest) {
-    ErrorsDTO errorsDTO = new ErrorsDTO();
     try {
       String authToken = httpServletRequest.getHeader("token");
       return ResponseEntity.ok(userService.getUserByToken(authToken));
     } catch (NotValidTokenException notValidTokenException) {
+      ErrorsDTO errorsDTO = new ErrorsDTO();
       errorsDTO.getError().add(new ErrorDTO(notValidTokenException.getTimestamp(), notValidTokenException.getCodigo(), notValidTokenException.getDetail()));
+      return ResponseEntity.badRequest().body(errorsDTO);
     } catch (Exception exception) {
+      ErrorsDTO errorsDTO = new ErrorsDTO();
       errorsDTO.getError().add(new ErrorDTO(LocalDateTime.now(), 1, exception.getMessage()));
+      return ResponseEntity.status(500).body(errorsDTO);
     }
-    return ResponseEntity.ok(errorsDTO);
   }
 }

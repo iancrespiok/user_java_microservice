@@ -1,15 +1,16 @@
 package bci.evaluacion.user.dtos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ErrorsDTO {
-  public ArrayList<ErrorDTO> error;
+  List<ErrorDTO> error = new ArrayList<>();
 
-  public ArrayList<ErrorDTO> getError() {
+  public List<ErrorDTO> getError() {
     return error;
   }
 
-  public void setError(ArrayList<ErrorDTO> error) {
+  public void setError(List<ErrorDTO> error) {
     this.error = error;
   }
 }

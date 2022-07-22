@@ -1,0 +1,11 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+HTTP - [User Microservice]
+
+database "H2"
+
+H2 -u- JPA
+[User Microservice] --> JPA
+
+@enduml

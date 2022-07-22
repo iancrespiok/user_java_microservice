@@ -7,8 +7,8 @@ import javax.persistence.Table;
 @Table(name = "phones")
 public class Phone extends PersistentEntity {
   private Long number;
-  private Integer cityCode;
-  private String countryCode;
+  private Integer citycode;
+  private String contrycode;
 
   public Long getNumber() {
     return number;
@@ -18,19 +18,19 @@ public class Phone extends PersistentEntity {
     this.number = number;
   }
 
-  public Integer getCityCode() {
-    return cityCode;
+  public Integer getCitycode() {
+    return citycode;
   }
 
-  public void setCityCode(Integer cityCode) {
-    this.cityCode = cityCode;
+  public void setCitycode(Integer cityCode) {
+    this.citycode = cityCode;
   }
 
-  public String getCountryCode() {
-    return countryCode;
+  public String getContrycode() {
+    return contrycode;
   }
 
-  public void setCountryCode(String countryCode) {
-    this.countryCode = countryCode;
+  public void setContrycode(String countryCode) {
+    this.contrycode = countryCode;
   }
 }

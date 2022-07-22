@@ -1,10 +1,10 @@
 package bci.evaluacion.user.model;
 
-import bci.evaluacion.user.dtos.UserDTO;
-import org.omg.CORBA.PUBLIC_MEMBER;
+import bci.evaluacion.user.dtos.SignUpRequestDTO;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +15,26 @@ public class User extends PersistentEntity {
   private String name;
   private String email;
   private String password;
-  private LocalDate lastLogin;
-  private LocalDate created;
-  private String token;
+  private LocalDateTime lastLogin;
+  private LocalDateTime created;
   private Boolean isActive;
   @OneToMany
   private List<Phone> phones = new ArrayList<Phone>();
+
+  public User() {
+  }
+
+  public User(SignUpRequestDTO signUpRequestDTO, String encodedPassword) {
+    this.setEmail(signUpRequestDTO.getEmail());
+    this.setPassword(encodedPassword);
+    this.setCreated(LocalDateTime.now());
+    this.setLastLogin(LocalDateTime.now());
+    this.setActive(true);
+    if (signUpRequestDTO.getName() != null)
+      this.setName(signUpRequestDTO.getName());
+    if (!signUpRequestDTO.getPhones().isEmpty())
+      this.setPhones(signUpRequestDTO.getPhones());
+  }
 
   public String getName() {
     return name;
@@ -54,28 +68,20 @@ public class User extends PersistentEntity {
     this.phones = phones;
   }
 
-  public LocalDate getLastLogin() {
+  public LocalDateTime getLastLogin() {
     return lastLogin;
   }
 
-  public void setLastLogin(LocalDate lastLogin) {
+  public void setLastLogin(LocalDateTime lastLogin) {
     this.lastLogin = lastLogin;
   }
 
-  public LocalDate getCreated() {
+  public LocalDateTime getCreated() {
     return created;
   }
 
-  public void setCreated(LocalDate created) {
+  public void setCreated(LocalDateTime created) {
     this.created = created;
-  }
-
-  public String getToken() {
-    return token;
-  }
-
-  public void setToken(String token) {
-    this.token = token;
   }
 
   public Boolean getActive() {

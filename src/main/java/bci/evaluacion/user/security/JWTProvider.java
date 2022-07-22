@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,19 +27,11 @@ public class JWTProvider {
     Map<String, Object> claims = new HashMap<>();
     claims = Jwts.claims().setSubject(user.getEmail());
     claims.put("id", user.getId());
+    claims.put("creationMoment", LocalDateTime.now().toString());
     return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS256, secret).compact();
   }
 
-  public Boolean validate(String token) {
-    try {
-      Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
-      return true;
-    } catch (Exception e){
-      return false;
-    }
-  }
-
-  public String getMailFromToken(String token) {
+  public String getEmailFromToken(String token) {
     try {
       return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
     } catch (Exception e) {

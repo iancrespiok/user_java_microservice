@@ -7,8 +7,7 @@ ServicioOFront -> Controlador: /sign-up (SignUpRequest en body)
 Controlador -> Servicio: createUser(userDTO)
 Servicio -> JwtProvider: createToken(userDTO))
 JwtProvider -> Servicio: token
-Servicio -> Repositorio: Authentication Response
-
+Servicio -> Repositorio: createUser
 Repositorio -> Servicio: User model
 Servicio -> Controlador: User DTO model
 Controlador -> ServicioOFront: User DTO model en el response

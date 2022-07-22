@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+ServicioOFront -> Controlador: /login (token en header)
+Controlador -> Servicio: getUserByToken(token)
+Servicio -> JwtProvider: getEmailFromToken(token)
+JwtProvider -> Servicio: Autoriza token, envia email y genera nuevo token
+Servicio -> Repositorio: findByEmail(email)
+Repositorio -> Servicio: User model
+Servicio -> Controlador: User DTO model
+Controlador -> ServicioOFront: User DTO model en el response
+
+
+@enduml

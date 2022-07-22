@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class emailValidatorTest {
+public class EmailValidatorTest {
   RegexValidator regexValidator = new RegexValidator();
 
   @Test
@@ -19,5 +19,6 @@ public class emailValidatorTest {
   @Test
   public void testValidPassword() {
     assertTrue(regexValidator.validatePassword("aAa23dss"));
+    assertFalse(regexValidator.validatePassword("aAAa23dss"));
   }
 }

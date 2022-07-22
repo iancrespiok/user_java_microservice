@@ -8,15 +8,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Component
 public class JWTProvider {
   @Value("${jwt.secret}")
   private String secret;
+
+  public JWTProvider(String secret) {
+    this.secret = secret;
+  }
 
   @PostConstruct
   protected void init() {
@@ -27,7 +31,7 @@ public class JWTProvider {
     Map<String, Object> claims = new HashMap<>();
     claims = Jwts.claims().setSubject(user.getEmail());
     claims.put("id", user.getId());
-    claims.put("creationMoment", LocalDateTime.now().toString());
+    claims.put("uuid", UUID.randomUUID().toString());
     return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS256, secret).compact();
   }
 

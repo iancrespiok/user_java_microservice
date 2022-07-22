@@ -98,7 +98,7 @@ Respuesta en caso de error:
 Diagrama de secuencia
 <img src = "DiagramaSecuenciaSignup.png" >
 
-### POST /login
+### GET /login
 
 En el request debe enviarse el token recibido en el endpoint anterior en el header.
 

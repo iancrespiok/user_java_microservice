@@ -96,7 +96,7 @@ Respuesta en caso de error:
 }
 ```
 Diagrama de secuencia
-<img src= "Diagrama%20de%secuencia%sign-up.png" >
+<img src = "DiagramaSecuenciaSignup.png" >
 
 ### POST /login
 
@@ -140,6 +140,6 @@ Respuesta en caso de error:
 }
 ```
 Diagrama de secuencia
-<img src= "Diagrama%20de%secuencia%login.png" >
+<img src="DiagramaSecuenciaLogin.png" >
 
 

@@ -8,7 +8,7 @@ public class SignUpRequestDTO {
   private String name;
   private String email;
   private String password;
-  private List<Phone> phones = new ArrayList<Phone>();
+  private List<PhoneDTO> phones = new ArrayList<>();
 
   public String getName() {
     return name;
@@ -34,11 +34,11 @@ public class SignUpRequestDTO {
     this.password = password;
   }
 
-  public List<Phone> getPhones() {
+  public List<PhoneDTO> getPhones() {
     return phones;
   }
 
-  public void setPhones(List<Phone> phones) {
+  public void setPhones(List<PhoneDTO> phones) {
     this.phones = phones;
   }
 }

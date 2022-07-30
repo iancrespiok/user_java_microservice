@@ -5,6 +5,7 @@ import bci.evaluacion.user.dtos.SignUpRequestDTO;
 import bci.evaluacion.user.dtos.UserResponseDTO;
 import bci.evaluacion.user.exceptions.NotValidTokenException;
 import bci.evaluacion.user.exceptions.NotValidUserException;
+import bci.evaluacion.user.model.Phone;
 import bci.evaluacion.user.model.User;
 import bci.evaluacion.user.repositories.UserRepository;
 import bci.evaluacion.user.security.JWTProvider;
@@ -40,11 +41,12 @@ public class UserService {
 
   public UserResponseDTO createUser(SignUpRequestDTO signUpRequestDTO){
     validateUser(signUpRequestDTO);
-    signUpRequestDTO.getPhones().forEach(p -> {
-        phoneService.createPhone(p);
-    });
     User user = new User(signUpRequestDTO, passwordEncoder.encode(signUpRequestDTO.getPassword()));
     userRepository.save(user);
+    signUpRequestDTO.getPhones().forEach(p -> {
+      Phone phone = new Phone(p, user);
+      phoneService.createPhone(phone);
+    });
     String token = jwtProvider.createToken(user);
     return new UserResponseDTO(user, token);
   }

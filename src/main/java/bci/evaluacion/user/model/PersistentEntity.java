@@ -5,16 +5,16 @@ import java.util.UUID;
 
 @MappedSuperclass
 public class PersistentEntity {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(unique = true, nullable = false)
-  private Long id;
+ // @Id
+//  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id  @GeneratedValue
+  private UUID id;
 
-  public Long getId() {
+  public UUID getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(UUID id) {
     this.id = id;
   }
 }

@@ -1,14 +1,37 @@
 package bci.evaluacion.user.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.jws.soap.SOAPBinding;
+import javax.persistence.*;
+
+import bci.evaluacion.user.dtos.PhoneDTO;
+import bci.evaluacion.user.model.User;
 
 @Entity
-@Table(name = "phones")
 public class Phone extends PersistentEntity {
   private Long number;
   private Integer citycode;
   private String contrycode;
+  @ManyToOne
+  @JoinColumn(name = "user_id", nullable = false)
+  private User user;
+
+  public Phone() {
+  }
+
+  public Phone(PhoneDTO phoneDTO, User user) {
+    this.number = phoneDTO.getNumber();
+    this.citycode = phoneDTO.getCitycode();
+    this.contrycode = phoneDTO.getContrycode();
+    this.user = user;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
 
   public Long getNumber() {
     return number;
@@ -33,4 +56,5 @@ public class Phone extends PersistentEntity {
   public void setContrycode(String countryCode) {
     this.contrycode = countryCode;
   }
+
 }

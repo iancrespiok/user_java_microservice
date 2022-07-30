@@ -7,9 +7,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class UserResponseDTO {
-  private Long id;
+  private UUID id;
   private LocalDateTime created;
   private LocalDateTime lastLogin;
   private String token;
@@ -17,7 +18,7 @@ public class UserResponseDTO {
   private String name;
   private String email;
   private String password;
-  private List<Phone> phones = new ArrayList<>();
+  private List<PhoneDTO> phones = new ArrayList<>();
 
   public UserResponseDTO(User user, String token) {
     this.id = user.getId();
@@ -25,19 +26,18 @@ public class UserResponseDTO {
     this.password = user.getPassword();
     if(user.getName() != null)
       this.name = user.getName();
-    if(!user.getPhones().isEmpty())
-      this.phones = user.getPhones();
+    this.phones = user.getPhones().stream().map(PhoneDTO::new).collect(Collectors.toList());
     this.created = user.getCreated();
     this.isActive = user.getActive();
     this.lastLogin = user.getLastLogin();
     this.token = token;
   }
 
-  public Long getId() {
+  public UUID getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(UUID id) {
     this.id = id;
   }
 
@@ -97,11 +97,11 @@ public class UserResponseDTO {
     this.password = password;
   }
 
-  public List<Phone> getPhones() {
+  public List<PhoneDTO> getPhones() {
     return phones;
   }
 
-  public void setPhones(List<Phone> phones) {
+  public void setPhones(List<PhoneDTO> phones) {
     this.phones = phones;
   }
 }

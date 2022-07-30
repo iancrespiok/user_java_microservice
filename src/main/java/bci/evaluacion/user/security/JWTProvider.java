@@ -1,5 +1,6 @@
 package bci.evaluacion.user.security;
 
+import bci.evaluacion.user.exceptions.NotValidTokenException;
 import bci.evaluacion.user.model.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +37,7 @@ public class JWTProvider {
     try {
       return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
     } catch (Exception e) {
-      return "Bad Token";
+      throw new NotValidTokenException(1, "Given token is not valid", LocalDateTime.now());
     }
   }
 

@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -18,8 +19,8 @@ public class User extends PersistentEntity {
   private LocalDateTime lastLogin;
   private LocalDateTime created;
   private Boolean isActive;
-  @OneToMany
-  private List<Phone> phones = new ArrayList<Phone>();
+  @OneToMany(mappedBy = "id")
+  private List<Phone> phones = new ArrayList<>();
 
   public User() {
   }
@@ -33,7 +34,7 @@ public class User extends PersistentEntity {
     if (signUpRequestDTO.getName() != null)
       this.setName(signUpRequestDTO.getName());
     if (!signUpRequestDTO.getPhones().isEmpty())
-      this.setPhones(signUpRequestDTO.getPhones());
+      this.setPhones(signUpRequestDTO.getPhones().stream().map(p -> new Phone(p, this)).collect(Collectors.toList()));
   }
 
   public String getName() {
